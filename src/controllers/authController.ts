@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
 
-const JWT_SECRET: string = 'aP$7d!f0J9&kL0!sE9nP@5qS2xR';
+const JWT_SECRET: string = process.env.SECRET!;
 
 // Sign Up
 export const register = async (req: Request, res: Response): Promise<void> => {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'aP$7d!f0J9&kL0!sE9nP@5qS2xR';
+const JWT_SECRET: string =  process.env.SECRET!;
 
 export const validateAuth = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization')?.split(' ')[1];
