@@ -1,17 +1,26 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-const JWT_SECRET: string =  process.env.SECRET!;
+dotenv.config();
 
-export const validateAuth = (req: Request, res: Response, next: NextFunction) => {
+const JWT_SECRET = process.env.JWT_SECRET!;
+
+interface CustomRequest extends Request {
+  user?: { userId: string }; // Define the user property locally
+}
+
+// Middleware to validate JWT
+export const validateAuth = (req: CustomRequest, res: Response, next: NextFunction): void => {
   const token = req.header('Authorization')?.split(' ')[1];
   if (!token) {
-    return res.status(401).json({ message: 'No token, authorization denied' });
+    res.status(401).json({ message: 'No token, authorization denied' });
+    return;
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
+    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string }; // Assert type
+    req.user = decoded; // Now TypeScript recognizes this
     next();
   } catch (error) {
     res.status(401).json({ message: 'Token is not valid' });
