@@ -7,6 +7,7 @@ export interface IUser extends Document {
   password: string;
   balance: number;
   pin: number | null;
+  profilePicture?: string;
 }
 
 const userSchema: Schema<IUser> = new Schema(
@@ -17,6 +18,7 @@ const userSchema: Schema<IUser> = new Schema(
     password: { type: String, required: true },
     balance: { type: Number, default: 0 }, // Initialize balance
     pin: { type: Number, default: null }, // Initialize pin
+    profilePicture: { type: String, default: null }, // Store the URL of the profile picture
   },
   { timestamps: true }
 );
