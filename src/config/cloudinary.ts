@@ -1,4 +1,5 @@
-import { v2 as cloudinary } from 'cloudinary'; // Use v2 for configuration
+//src/config/cloudinary.ts
+import { v2 as cloudinary } from 'cloudinary'; 
 import dotenv from 'dotenv';
 
 dotenv.config();

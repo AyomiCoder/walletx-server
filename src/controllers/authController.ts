@@ -1,3 +1,5 @@
+//src/controllers/authController.ts
+
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -226,7 +228,7 @@ export const setPin = async (req: CustomRequest, res: Response): Promise<void> =
 
 // Edit Profile
 export const editProfile = async (req: CustomRequest, res: Response): Promise<void> => {
-  const { fullName, profilePicture } = req.body; // Include profilePicture in the request body
+  const { fullName, profilePicture } = req.body; 
   const userId = req.user?.userId;
 
   try {

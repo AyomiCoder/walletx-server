@@ -1,12 +1,14 @@
+//src/models/Transactions.ts
+
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface ITransaction extends Document {
-  userId: string; // Reference to the user
-  type: 'credit' | 'debit'; // Type of transaction (add money or send money)
-  amount: number; // Amount involved in the transaction
+  userId: string; 
+  type: 'credit' | 'debit'; 
+  amount: number;
   description: string;
-  recipientUsername?: string; // Username of the recipient (optional for add transactions)
-  createdAt: Date; // Date of transaction
+  recipientUsername?: string; 
+  createdAt: Date; 
 }
 
 const transactionSchema: Schema<ITransaction> = new Schema(
